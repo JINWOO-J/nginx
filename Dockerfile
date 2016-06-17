@@ -7,7 +7,7 @@ MAINTAINER JINWOO <jinwoo@yellotravel.com>
 # Prepare the container
 #
 RUN ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
-ENV NGINX_VERSION nginx-1.10.0
+ENV NGINX_VERSION nginx-1.9.15
 RUN echo $NGINX_VERSION
 ENV DOCKERIZE_VERSION v0.2.0
 
