@@ -23,7 +23,7 @@ push_hub:
 	git push
 	git tag -a "$(VERSION)" -m "$(VERSION) by Makefile"
 	git push origin --tags
-	curl -H "Content-Type: application/json" --data '{"source_type": "Tag", "source_name": "$(VERSION)"}' -X POST https://registry.hub.docker.com/u/jinwoo/${VERSION}/trigger/${TRIGGERKEY}/
+	curl -H "Content-Type: application/json" --data '{"source_type": "Tag", "source_name": "$(VERSION)"}' -X POST https://registry.hub.docker.com/u/jinwoo/${NAME}/trigger/${TRIGGERKEY}/
 
 bash:
 	docker run --entrypoint="bash" --rm -it $(NAME):$(VERSION)
