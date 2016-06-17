@@ -1,7 +1,7 @@
 REPO = dr.ytlabs.co.kr
 REPO_HUB = jinwoo
 NAME = nginx
-VERSION = 1.11.0
+VERSION = 1.10.0
 include ENVAR
 
 .PHONY: all build push test tag_latest release ssh bash push_hub
