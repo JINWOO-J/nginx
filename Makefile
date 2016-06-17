@@ -1,4 +1,5 @@
 REPO = dr.ytlabs.co.kr
+REPO_HUB = jinwoo
 NAME = nginx
 VERSION = 1.11.0
 include ENVAR
@@ -16,11 +17,14 @@ push:
 	docker push $(REPO)/$(NAME):$(VERSION)
 
 push_hub:
+	docker tag -f $(NAME):$(VERSION) $(REPO_HUB)/$(NAME):$(VERSION)
+	docker push $(REPO_HUB)/$(NAME):$(VERSION)
+
+build_hub:
 	echo "TRIGGER_KEY" ${TRIGGERKEY}
 	cat .Dockerfile | sed  "s/__NGINX_VERSION__/nginx-$(VERSION)/g"   > Dockerfile
 	git add .
 	git commit -m "$(NAME):$(VERSION) by Makefile"
-	git push
 	git tag -a "$(VERSION)" -m "$(VERSION) by Makefile"
 	git push origin --tags
 	curl -H "Content-Type: application/json" --data '{"source_type": "Tag", "source_name": "$(VERSION)"}' -X POST https://registry.hub.docker.com/u/jinwoo/${NAME}/trigger/${TRIGGERKEY}/
